@@ -1,0 +1,73 @@
+header {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+body {
+  font-family: sans-serif;
+  padding: 10px;
+  width: 360px;
+  max-height: 600px;
+  overflow-y: auto;
+  background: #f9f9f9;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+#productList.scrollable {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 10px;
+}
+
+.card img {
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.product-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+button#exportBtn {
+  padding: 4px 10px;
+  font-size: 12px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button#exportBtn:hover {
+  background: #45a049;
+}
+
+footer {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 11px;
+  color: #aaa;
+}
+
+.empty {
+  font-style: italic;
+  color: #777;
+  text-align: center;
+  margin-top: 20px;
+}
