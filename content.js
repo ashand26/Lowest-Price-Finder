@@ -28,10 +28,3 @@ function extractProductsFromGoogleSearch() {
   
     return products;
   }
-  
-  chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
-    if (msg.action === "get_products") {
-      const results = extractProductsFromGoogleSearch();
-      sendResponse({ data: results });
-    }
-  });
