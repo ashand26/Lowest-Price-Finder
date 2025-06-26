@@ -3,5 +3,52 @@
 .vscode/
 *.code-workspace
 
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+build/
+
+# ----------------------------
+# Python (if applicable)
+__pycache__/
+*.py[cod]
+*.pyo
+env/
+venv/
+*.egg-info/
+
+# ----------------------------
+# VSCode
+.vscode/
+*.code-workspace
+
+# ----------------------------
+# OS-specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ----------------------------
+# Environment/Secrets
+.env
+.env.local
+.env.*.local
+
+# ----------------------------
+# Logs
+logs/
+*.log
+
+# ----------------------------
+# Others (edit as needed)
+*.bak
+*.tmp
+*.swp
+coverage/
+
 # Others
 *.dat
+*.env

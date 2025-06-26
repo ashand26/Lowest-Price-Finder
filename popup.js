@@ -42,7 +42,7 @@ document.getElementById("getAdviceBtn").onclick = async () => {
   const btn = document.getElementById("getAdviceBtn");
   const box = document.getElementById("adviceBox");
   btn.disabled = true;
-  box.innerText = "🧠 Fetching shopping advice...";
+  box.innerText = "Fetching shopping advice...";
 
   const queryParam = await chrome.tabs.query({ active: true, currentWindow: true });
   const tabUrl = new URL(queryParam[0].url);
@@ -55,29 +55,32 @@ document.getElementById("getAdviceBtn").onclick = async () => {
   const prompt = `Product: ${searchQuery}\n\nPrices & Listings:\n${shortList}\n\nGive me helpful shopping advice based on these options. Mention what to consider, and whether it's worth buying now.`;
 
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("http://localhost:3000/advice", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_OPENAI_API_KEY" 
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: prompt }],
-        temperature: 0.7
-      })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt })
     });
 
-    const data = await response.json();
-    const advice = data.choices?.[0]?.message?.content || "No advice found.";
-    box.innerText = advice;
+    const responseData = await response.json();
+    const advice = responseData?.choices?.[0]?.message?.content?.trim();
+
+    if (advice) {
+      box.innerHTML = `
+        🧠 <strong>Shopping Tip:</strong><br>${advice}
+      `;
+    } else {
+      box.innerHTML = `
+        ⚠️ <em>No advice found from AI.</em>
+      `;
+    }
   } catch (err) {
     console.error(err);
-    box.innerText = "⚠️ Failed to get advice. Check your API key or network.";
+    box.innerText = "Failed to get advice. Check your API key or network.";
   } finally {
     btn.disabled = false;
   }
 };
+
 
 function exportProducts(products) {
   const headers = ["Product Name", "Price (LKR)", "Shop", "Stock", "Link"];
